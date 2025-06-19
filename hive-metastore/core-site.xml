@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <!-- S3A Configuration -->
+  <property>
+    <n>fs.s3a.endpoint</n>
+    <value>http://minio:9000</value>
+    <description>AWS S3 endpoint to connect to</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.access.key</n>
+    <value>admin</value>
+    <description>AWS access key ID</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.secret.key</n>
+    <value>password</value>
+    <description>AWS secret key</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.path.style.access</n>
+    <value>true</value>
+    <description>Enable S3 path style access ie disabling the default virtual hosting behaviour</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.connection.ssl.enabled</n>
+    <value>false</value>
+    <description>Disable SSL connections to S3</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.impl</n>
+    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+    <description>The implementation class of the S3A Filesystem</description>
+  </property>
+  
+  <property>
+    <n>fs.AbstractFileSystem.s3a.impl</n>
+    <value>org.apache.hadoop.fs.s3a.S3A</value>
+    <description>The implementation class of the S3A AbstractFileSystem</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.aws.credentials.provider</n>
+    <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
+    <description>AWS credentials provider</description>
+  </property>
+  
+  <!-- Performance tuning -->
+  <property>
+    <n>fs.s3a.connection.maximum</n>
+    <value>200</value>
+    <description>Maximum number of concurrent connections to S3</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.multipart.size</n>
+    <value>67108864</value>
+    <description>Size of each part in a multipart upload (64MB)</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.multipart.threshold</n>
+    <value>134217728</value>
+    <description>Minimum size before starting multipart upload (128MB)</description>
+  </property>
+  
+  <property>
+    <n>fs.s3a.fast.upload</n>
+    <value>true</value>
+    <description>Enable fast upload using disk-based staging</description>
+  </property>
+</configuration>

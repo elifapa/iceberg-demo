@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <!-- Database connection settings -->
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:postgresql://postgres:5432/hive_metastore?createDatabaseIfNotExist=true</value>
+    <description>JDBC connect string for a JDBC metastore</description>
+  </property>
+  
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.postgresql.Driver</value>
+    <description>Driver class name for a JDBC metastore</description>
+  </property>
+  
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>hive</value>
+    <description>Username to use against metastore database</description>
+  </property>
+  
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>hive</value>
+    <description>Password to use against metastore database</description>
+  </property>
+  
+  <!-- Warehouse location on MinIO -->
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>s3a://iceberg-warehouse/warehouse</value>
+    <description>Location of default database for the warehouse</description>
+  </property>
+  
+  <!-- Metastore settings -->
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://0.0.0.0:9083</value>
+    <description>Thrift URI for the remote metastore</description>
+  </property>
+  
+  <property>
+    <name>hive.metastore.schema.verification</name>
+    <value>true</value>
+    <description>Enforce metastore schema version consistency</description>
+  </property>
+  
+  <property>
+    <name>hive.metastore.schema.verification.record.version</name>
+    <value>true</value>
+    <description>Record schema version in metastore</description>
+  </property>
+  
+  <property>
+    <name>datanucleus.autoCreateSchema</name>
+    <value>false</value>
+    <description>Creates necessary schema on a startup if one doesn't exist</description>
+  </property>
+  
+  <property>
+    <name>datanucleus.fixedDatastore</name>
+    <value>true</value>
+    <description>Don't auto-create missing tables</description>
+  </property>
+  
+  <property>
+    <name>datanucleus.autoCreateTables</name>
+    <value>false</value>
+    <description>Auto create tables</description>
+  </property>
+  
+  <!-- S3A Configuration for MinIO -->
+  <property>
+    <name>fs.s3a.endpoint</name>
+    <value>http://minio:9000</value>
+    <description>AWS S3 endpoint to connect to</description>
+  </property>
+  
+  <property>
+    <name>fs.s3a.access.key</name>
+    <value>admin</value>
+    <description>AWS access key ID</description>
+  </property>
+  
+  <property>
+    <name>fs.s3a.secret.key</name>
+    <value>password</value>
+    <description>AWS secret key</description>
+  </property>
+  
+  <property>
+    <name>fs.s3a.path.style.access</name>
+    <value>true</value>
+    <description>Enable S3 path style access</description>
+  </property>
+  
+  <property>
+    <name>fs.s3a.connection.ssl.enabled</name>
+    <value>false</value>
+    <description>Disable SSL for MinIO</description>
+  </property>
+  
+  <property>
+    <name>fs.s3a.impl</name>
+    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+    <description>The implementation class of the S3A Filesystem</description>
+  </property>
+  
+  <property>
+    <name>fs.s3a.aws.credentials.provider</name>
+    <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
+    <description>AWS credentials provider</description>
+  </property>
+  
+  <!-- Performance settings -->
+  <property>
+    <name>hive.metastore.client.socket.timeout</name>
+    <value>60s</value>
+    <description>MetaStore client socket timeout</description>
+  </property>
+  
+  <property>
+    <name>hive.metastore.connect.retries</name>
+    <value>3</value>
+    <description>Number of retries while opening a connection to metastore</description>
+  </property>
+</configuration>

@@ -1,0 +1,24 @@
+version: '3'
+dotenv:
+  - .env
+
+
+tasks:
+  reboot/docker:
+    desc: "Initialize Docker environment"
+    cmds:
+      - chmod +x ./trino/etc/*
+      - docker compose down 
+      - echo "Docker containers are down. Rebooting..."
+      - docker compose up -d
+      - echo "Containers have started! Rejoice!"
+
+
+  destroy/all:
+    desc: "Destroy all infra"
+    cmds:
+      - task: docker:remove/all
+      - rm -rf ./infra/postgres/data
+      - rm -rf ./infra/minio/data
+      - rm -rf ./infra/gha_runner/data
+      - echo "All infra destroyed"
